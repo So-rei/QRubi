@@ -53,6 +53,7 @@
     <Compile Include="frmDialog.Designer.cs">
       <DependentUpon>frmDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="SubModule\ExChangeCls.cs" />
     <Compile Include="_MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

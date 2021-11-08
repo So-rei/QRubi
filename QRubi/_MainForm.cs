@@ -20,6 +20,7 @@ namespace QRubi
 
             //初期値セット
             txtLoadTargetFile.Text = cConfigClass.LoadFilePath;
+            txtLoadTargetFolder.Text = cConfigClass.LoadFolderPath;
             txtSaveTargetFolder.Text = cConfigClass.SaveFolderPath;
             chkChange1.Checked = cConfigClass.IsChk1;
             chkChange2.Checked = cConfigClass.IsChk2;
@@ -48,9 +49,7 @@ namespace QRubi
             cfrm.Show();
 
             //メイン処理
-            
-
-
+            var cExChangeCls = new ExChangeCls(InName, OutName, cfrm);
         }
 
         //ファイル１つだけ

@@ -47,7 +47,7 @@ namespace QRubi
             this.rdoFile = new System.Windows.Forms.RadioButton();
             this.rdoFolder = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtLoadTargetFolder = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
@@ -219,7 +219,7 @@ namespace QRubi
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.txtLoadTargetFolder);
             this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.rdoFolder);
             this.groupBox3.Controls.Add(this.rdoFile);
@@ -233,13 +233,13 @@ namespace QRubi
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "変換前ファイル";
             // 
-            // textBox1
+            // txtLoadTargetFolder
             // 
-            this.textBox1.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox1.Location = new System.Drawing.Point(26, 111);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(224, 20);
-            this.textBox1.TabIndex = 18;
+            this.txtLoadTargetFolder.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.txtLoadTargetFolder.Location = new System.Drawing.Point(26, 111);
+            this.txtLoadTargetFolder.Name = "txtLoadTargetFolder";
+            this.txtLoadTargetFolder.Size = new System.Drawing.Size(224, 20);
+            this.txtLoadTargetFolder.TabIndex = 18;
             // 
             // button1
             // 
@@ -310,7 +310,7 @@ namespace QRubi
         private System.Windows.Forms.RadioButton rdoFile;
         private System.Windows.Forms.RadioButton rdoFolder;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtLoadTargetFolder;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox4;
     }

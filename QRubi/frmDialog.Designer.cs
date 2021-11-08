@@ -36,6 +36,7 @@ namespace QRubi
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(12, 12);
+            this.progressBar1.Maximum = 1000000;
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(382, 35);
             this.progressBar1.TabIndex = 0;
@@ -49,14 +50,14 @@ namespace QRubi
             this.lblComplain.Size = new System.Drawing.Size(0, 19);
             this.lblComplain.TabIndex = 1;
             // 
-            // Form1
+            // frmDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(405, 88);
             this.Controls.Add(this.lblComplain);
             this.Controls.Add(this.progressBar1);
-            this.Name = "Form1";
+            this.Name = "frmDialog";
             this.Text = "処理中．．．";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -64,9 +65,8 @@ namespace QRubi
         }
 
         #endregion
-
-        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label lblComplain;
+        public System.Windows.Forms.ProgressBar progressBar1;
     }
 }
 

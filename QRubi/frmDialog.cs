@@ -12,6 +12,8 @@ namespace QRubi
 {
     public partial class frmDialog : Form
     {
+        public const int MaxProgressBar = 1000000;
+
         public frmDialog()
         {
             InitializeComponent();
