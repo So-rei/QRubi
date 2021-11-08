@@ -12,10 +12,18 @@ namespace QRubi
     /// </summary>
     public class ConfigClass
     {
+        //app.configから取得
         public static string DefaultLoadFilePath = ConfigurationManager.AppSettings["DefaultLoadFilePath"];
         public static string DefaultSaveFolderPath = ConfigurationManager.AppSettings["DefaultSaveFolderPath"];
+        public static string BfLoadFilePath = ConfigurationManager.AppSettings["BfLoadFilePath"];
+        public static string BfSaveFolderPath = ConfigurationManager.AppSettings["BfSaveFolderPath"];
+        public static string Chk1 = ConfigurationManager.AppSettings["Chk1"];
+        public static string Chk2 = ConfigurationManager.AppSettings["Chk2"];
 
-        public string LoadFilePath { get; set; } = DefaultLoadFilePath;
-        public string SaveFolderPath { get; set; } = DefaultSaveFolderPath;
+        public string LoadFilePath { get; set; } = BfLoadFilePath != "" ? BfLoadFilePath : DefaultLoadFilePath;
+        public string SaveFolderPath { get; set; } = BfSaveFolderPath != "" ? BfSaveFolderPath : DefaultSaveFolderPath;
+
+        public bool IsChk1 { get; set; } = Chk1 == "" ? false : Convert.ToBoolean(Chk1);
+        public bool IsChk2 { get; set; } = Chk2 == "" ? false : Convert.ToBoolean(Chk2);
     }
 }
