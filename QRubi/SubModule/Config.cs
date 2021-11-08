@@ -10,7 +10,7 @@ namespace QRubi
     /// <summary>
     /// ファイルパス関係
     /// </summary>
-    public class ConfigClass
+    public static class ConfigClass
     {
         //app.configから取得
         public static string DefaultLoadFilePath = ConfigurationManager.AppSettings["DefaultLoadFilePath"];
@@ -22,11 +22,28 @@ namespace QRubi
         public static string Chk1 = ConfigurationManager.AppSettings["Chk1"];
         public static string Chk2 = ConfigurationManager.AppSettings["Chk2"];
 
-        public string LoadFilePath { get; set; } = BfLoadFilePath != "" ? BfLoadFilePath : DefaultLoadFilePath;
-        public string LoadFolderPath { get; set; } = BfLoadFolderPath != "" ? BfLoadFolderPath : DefaultLoadFolderPath;
-        public string SaveFolderPath { get; set; } = BfSaveFolderPath != "" ? BfSaveFolderPath : DefaultSaveFolderPath;
+        public static string Dic1 = ConfigurationManager.AppSettings["Dic1"];
 
-        public bool IsChk1 { get; set; } = Chk1 == "" ? false : Convert.ToBoolean(Chk1);
-        public bool IsChk2 { get; set; } = Chk2 == "" ? false : Convert.ToBoolean(Chk2);
+        public static string LoadFilePath { get; set; } = BfLoadFilePath != "" ? BfLoadFilePath : DefaultLoadFilePath;
+        public static string LoadFolderPath { get; set; } = BfLoadFolderPath != "" ? BfLoadFolderPath : DefaultLoadFolderPath;
+        public static string SaveFolderPath { get; set; } = BfSaveFolderPath != "" ? BfSaveFolderPath : DefaultSaveFolderPath;
+
+        public static bool IsChk1 { get; set; } = Chk1 == "" ? false : Convert.ToBoolean(Chk1);
+        public static bool IsChk2 { get; set; } = Chk2 == "" ? false : Convert.ToBoolean(Chk2);
+
+        public static IEnumerable<string> DicPath()
+        {
+            int i = 1;
+            while (true)
+            {
+                string s = ConfigurationManager.AppSettings["Dic" + i.ToString()];
+                if (s != null && s != "")
+                    yield return s;
+                else
+                    yield break;
+
+                i++;
+            }
+        }
     }
 }

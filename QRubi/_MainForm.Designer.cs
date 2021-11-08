@@ -38,8 +38,8 @@ namespace QRubi
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtSaveTargetFolder = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnSaveTargetFolder = new System.Windows.Forms.Button();
+            this.btnLoadTargetFile = new System.Windows.Forms.Button();
             this.txtLoadTargetFile = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
@@ -48,17 +48,22 @@ namespace QRubi
             this.rdoFolder = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtLoadTargetFolder = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnLoadTargetFolder = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lbDic = new System.Windows.Forms.ListBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnRemDic = new System.Windows.Forms.Button();
+            this.btnAddDic = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnStart
             // 
             this.btnStart.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btnStart.Location = new System.Drawing.Point(268, 260);
+            this.btnStart.Location = new System.Drawing.Point(299, 325);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(154, 43);
             this.btnStart.TabIndex = 0;
@@ -71,7 +76,7 @@ namespace QRubi
             this.lbLog.Enabled = false;
             this.lbLog.FormattingEnabled = true;
             this.lbLog.ItemHeight = 12;
-            this.lbLog.Location = new System.Drawing.Point(49, 325);
+            this.lbLog.Location = new System.Drawing.Point(75, 390);
             this.lbLog.Name = "lbLog";
             this.lbLog.Size = new System.Drawing.Size(597, 76);
             this.lbLog.TabIndex = 1;
@@ -80,7 +85,7 @@ namespace QRubi
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(563, 291);
+            this.label1.Location = new System.Drawing.Point(563, 356);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 2;
@@ -121,54 +126,55 @@ namespace QRubi
             this.groupBox1.Controls.Add(this.chkChange1);
             this.groupBox1.Controls.Add(this.chkChange2);
             this.groupBox1.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.groupBox1.Location = new System.Drawing.Point(391, 120);
+            this.groupBox1.Location = new System.Drawing.Point(428, 172);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(289, 51);
+            this.groupBox1.Size = new System.Drawing.Size(307, 51);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "変換オプション";
             // 
             // txtSaveTargetFolder
             // 
-            this.txtSaveTargetFolder.Location = new System.Drawing.Point(14, 38);
+            this.txtSaveTargetFolder.Location = new System.Drawing.Point(16, 39);
             this.txtSaveTargetFolder.Name = "txtSaveTargetFolder";
-            this.txtSaveTargetFolder.Size = new System.Drawing.Size(224, 22);
+            this.txtSaveTargetFolder.Size = new System.Drawing.Size(255, 22);
             this.txtSaveTargetFolder.TabIndex = 9;
             // 
-            // button2
+            // btnSaveTargetFolder
             // 
-            this.button2.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button2.Location = new System.Drawing.Point(244, 36);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(25, 26);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "...";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnSaveTargetFolder.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnSaveTargetFolder.Location = new System.Drawing.Point(277, 38);
+            this.btnSaveTargetFolder.Name = "btnSaveTargetFolder";
+            this.btnSaveTargetFolder.Size = new System.Drawing.Size(25, 26);
+            this.btnSaveTargetFolder.TabIndex = 10;
+            this.btnSaveTargetFolder.Text = "...";
+            this.btnSaveTargetFolder.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnLoadTargetFile
             // 
-            this.button3.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button3.Location = new System.Drawing.Point(256, 49);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(25, 26);
-            this.button3.TabIndex = 12;
-            this.button3.Text = "...";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnLoadTargetFile.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnLoadTargetFile.Location = new System.Drawing.Point(287, 50);
+            this.btnLoadTargetFile.Name = "btnLoadTargetFile";
+            this.btnLoadTargetFile.Size = new System.Drawing.Size(25, 26);
+            this.btnLoadTargetFile.TabIndex = 12;
+            this.btnLoadTargetFile.Text = "...";
+            this.btnLoadTargetFile.UseVisualStyleBackColor = true;
+            this.btnLoadTargetFile.Click += new System.EventHandler(this.btnLoadTargetFile_Click);
             // 
             // txtLoadTargetFile
             // 
             this.txtLoadTargetFile.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.txtLoadTargetFile.Location = new System.Drawing.Point(26, 53);
             this.txtLoadTargetFile.Name = "txtLoadTargetFile";
-            this.txtLoadTargetFile.Size = new System.Drawing.Size(224, 20);
+            this.txtLoadTargetFile.Size = new System.Drawing.Size(255, 20);
             this.txtLoadTargetFile.TabIndex = 11;
             // 
             // groupBox2
             // 
             this.groupBox2.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.groupBox2.Location = new System.Drawing.Point(12, 194);
+            this.groupBox2.Location = new System.Drawing.Point(428, 229);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(668, 51);
+            this.groupBox2.Size = new System.Drawing.Size(307, 77);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "その他オプション";
@@ -176,7 +182,7 @@ namespace QRubi
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button4.Location = new System.Drawing.Point(621, 285);
+            this.button4.Location = new System.Drawing.Point(621, 350);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(25, 26);
             this.button4.TabIndex = 14;
@@ -187,7 +193,7 @@ namespace QRubi
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("MS UI Gothic", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(325, 59);
+            this.label2.Location = new System.Drawing.Point(357, 52);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 37);
             this.label2.TabIndex = 15;
@@ -196,6 +202,7 @@ namespace QRubi
             // rdoFile
             // 
             this.rdoFile.AutoSize = true;
+            this.rdoFile.Checked = true;
             this.rdoFile.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.rdoFile.Location = new System.Drawing.Point(8, 27);
             this.rdoFile.Name = "rdoFile";
@@ -213,22 +220,21 @@ namespace QRubi
             this.rdoFolder.Name = "rdoFolder";
             this.rdoFolder.Size = new System.Drawing.Size(125, 17);
             this.rdoFolder.TabIndex = 17;
-            this.rdoFolder.TabStop = true;
             this.rdoFolder.Text = "フォルダ全体を変換";
             this.rdoFolder.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.txtLoadTargetFolder);
-            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.btnLoadTargetFolder);
             this.groupBox3.Controls.Add(this.rdoFolder);
             this.groupBox3.Controls.Add(this.rdoFile);
             this.groupBox3.Controls.Add(this.txtLoadTargetFile);
-            this.groupBox3.Controls.Add(this.button3);
+            this.groupBox3.Controls.Add(this.btnLoadTargetFile);
             this.groupBox3.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.groupBox3.Location = new System.Drawing.Point(12, 9);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(298, 148);
+            this.groupBox3.Size = new System.Drawing.Size(325, 148);
             this.groupBox3.TabIndex = 18;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "変換前ファイル";
@@ -238,42 +244,85 @@ namespace QRubi
             this.txtLoadTargetFolder.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.txtLoadTargetFolder.Location = new System.Drawing.Point(26, 111);
             this.txtLoadTargetFolder.Name = "txtLoadTargetFolder";
-            this.txtLoadTargetFolder.Size = new System.Drawing.Size(224, 20);
+            this.txtLoadTargetFolder.Size = new System.Drawing.Size(255, 20);
             this.txtLoadTargetFolder.TabIndex = 18;
             // 
-            // button1
+            // btnLoadTargetFolder
             // 
-            this.button1.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1.Location = new System.Drawing.Point(256, 107);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(25, 26);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "...";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnLoadTargetFolder.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnLoadTargetFolder.Location = new System.Drawing.Point(287, 108);
+            this.btnLoadTargetFolder.Name = "btnLoadTargetFolder";
+            this.btnLoadTargetFolder.Size = new System.Drawing.Size(25, 26);
+            this.btnLoadTargetFolder.TabIndex = 19;
+            this.btnLoadTargetFolder.Text = "...";
+            this.btnLoadTargetFolder.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.txtSaveTargetFolder);
-            this.groupBox4.Controls.Add(this.button2);
+            this.groupBox4.Controls.Add(this.btnSaveTargetFolder);
             this.groupBox4.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.groupBox4.Location = new System.Drawing.Point(391, 9);
+            this.groupBox4.Location = new System.Drawing.Point(418, 12);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(289, 87);
+            this.groupBox4.Size = new System.Drawing.Size(317, 87);
             this.groupBox4.TabIndex = 19;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "変換後ファイル　保存先";
+            // 
+            // lbDic
+            // 
+            this.lbDic.FormattingEnabled = true;
+            this.lbDic.ItemHeight = 15;
+            this.lbDic.Location = new System.Drawing.Point(14, 30);
+            this.lbDic.Name = "lbDic";
+            this.lbDic.Size = new System.Drawing.Size(378, 79);
+            this.lbDic.TabIndex = 20;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.btnRemDic);
+            this.groupBox5.Controls.Add(this.lbDic);
+            this.groupBox5.Controls.Add(this.btnAddDic);
+            this.groupBox5.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.groupBox5.Location = new System.Drawing.Point(12, 172);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(410, 147);
+            this.groupBox5.TabIndex = 21;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "使用中の変換辞書";
+            // 
+            // btnRemDic
+            // 
+            this.btnRemDic.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnRemDic.Location = new System.Drawing.Point(71, 115);
+            this.btnRemDic.Name = "btnRemDic";
+            this.btnRemDic.Size = new System.Drawing.Size(51, 26);
+            this.btnRemDic.TabIndex = 11;
+            this.btnRemDic.Text = "削除";
+            this.btnRemDic.UseVisualStyleBackColor = true;
+            // 
+            // btnAddDic
+            // 
+            this.btnAddDic.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.btnAddDic.Location = new System.Drawing.Point(14, 115);
+            this.btnAddDic.Name = "btnAddDic";
+            this.btnAddDic.Size = new System.Drawing.Size(51, 26);
+            this.btnAddDic.TabIndex = 10;
+            this.btnAddDic.Text = "追加";
+            this.btnAddDic.UseVisualStyleBackColor = true;
             // 
             // _MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(692, 410);
+            this.ClientSize = new System.Drawing.Size(748, 478);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbLog);
             this.Controls.Add(this.btnStart);
@@ -285,6 +334,7 @@ namespace QRubi
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,8 +351,8 @@ namespace QRubi
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtSaveTargetFolder;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnSaveTargetFolder;
+        private System.Windows.Forms.Button btnLoadTargetFile;
         private System.Windows.Forms.TextBox txtLoadTargetFile;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button button4;
@@ -311,8 +361,12 @@ namespace QRubi
         private System.Windows.Forms.RadioButton rdoFolder;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox txtLoadTargetFolder;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnLoadTargetFolder;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.ListBox lbDic;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button btnRemDic;
+        private System.Windows.Forms.Button btnAddDic;
     }
 }
 

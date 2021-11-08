@@ -12,9 +12,14 @@ namespace QRubi
     /// </summary>
     public class ExChangeCls
     {
-        private IEnumerable<int> ChangeMode { get; set; }
-        private IEnumerable<string> InName { get; set; }
-        private string OutName { get; set; }
+        private static IEnumerable<int> ChangeMode { get; set; }
+        private static IEnumerable<string> InName { get; set; }
+        private static string OutName { get; set; }
+        private static string DicName { get; set; }
+
+        private static IOrderedEnumerable<KeyValuePair<string, string>> Libs;
+
+        private static frmDialog cFrm { get; set; }
         /// <summary>
         /// コンストラクタ
         /// </summary>
@@ -22,52 +27,91 @@ namespace QRubi
         /// <param name="InName">変換するファイル</param>
         /// <param name="OutName">変換先フォルダパス</param>
         /// <param name="cfrm">プログレスバーfrm option</param>
-        public ExChangeCls(IEnumerable<int> _ChangeMode, IEnumerable<string> _InName, string _OutName, frmDialog cfrm = null)
+        public ExChangeCls(IEnumerable<int> _ChangeMode, IEnumerable<string> _InName, string _OutName, IEnumerable<string> _DicName, frmDialog _cfrm = null)
         {
             ChangeMode = _ChangeMode;
             InName = _InName;
             OutName = _OutName;
+            cFrm = _cfrm;
 
-            if (cfrm != null)
-                MainLoop(cfrm);
-            //else
-            //    MainLoop();
+            SetDic(_DicName);
 
+            MainLoop();
+        }
+
+        //辞書リストセット
+        private void SetDic(IEnumerable<string> _DicName)
+        {
+            var tDic = new Dictionary<string, string>();
+            //ファイル別並列処理
+            Parallel.ForEach(_DicName, sIn =>
+            {
+                using (var sr = new System.IO.StreamReader(@sIn, System.Text.Encoding.GetEncoding("utf-8")))
+                {
+                    while (sr.Peek() > -1)
+                    {
+                        var s = sr.ReadLine().Split('\t');
+                        if (!tDic.ContainsKey(s[0])) //重複不可
+                            tDic.Add(s[0], s[1]);
+                    }
+                }
+            });
+
+            Libs = tDic.OrderByDescending(p => p.Key.Length); //長い順にマッチ確認するため
         }
 
         //メインループ
-        private void MainLoop(frmDialog cfrm)
+        private void MainLoop()
         {
             //ファイル数でざっくり分割
-            cfrm.progressBar1.Value = 0;
-            var perBar = cfrm == null ? 0 : cfrm.progressBar1.Maximum / InName.Count();
+            //bool bBar = cFrm != null;
+            //if (bBar)
+            //    cFrm.progressBar1.Value = 0;
+            //var perBar = bBar ? cFrm.progressBar1.Maximum / InName.Count() / ChangeMode.Count() : 0;
 
-            //並列処理
-            Parallel.ForEach(InName, sIn =>
+            //モード別並列処理
+            Parallel.ForEach(ChangeMode, cm =>
             {
-                string outputfileName = @OutName + sIn.Split('\\').Last();
-                var sb = new System.Text.StringBuilder();
-
-                using (var sr = new System.IO.StreamReader(@sIn, System.Text.Encoding.GetEncoding("shift_jis")))
-                using (var sw = new System.IO.StreamWriter(outputfileName, true, System.Text.Encoding.GetEncoding("shift_jis")))
+                //ファイル別並列処理
+                Parallel.ForEach(InName, sIn =>
                 {
-                    var s0 = ChangeFormat(sr.ReadLine());
-                    sw.WriteLine(s0);
-                }
+                    //行単位で処理
+                    string outputfileName = @OutName + "【ルビ済】" + sIn.Split('\\').Last();
+                    var sb = new System.Text.StringBuilder();
 
-                cfrm.progressBar1.Value += perBar;
+                    using (var sr = new System.IO.StreamReader(@sIn, System.Text.Encoding.GetEncoding("utf-8")))
+                    using (var sw = new System.IO.StreamWriter(@outputfileName, false, System.Text.Encoding.GetEncoding("utf-8")))
+                    {
+                        while (sr.Peek() > -1)
+                        {
+                            var s0 = ChangeFormat(cm, sr.ReadLine());
+                            sw.WriteLine(s0);
+                        }
+                    }
+
+                    //if (bBar) cFrm.progressBar1.Value += perBar;
+                });
             });
         }
 
-        //TODO
-        //private void MainLoop()
-        //{
-        //}
-
         //ルビ振りメイン処理
-        public static string ChangeFormat(string s)
+        public static string ChangeFormat(int cm, string srow)
         {
-            return s;
+            string sx = srow.Replace("《", "｜《").Replace("》", "｜》"); //元からある二重括弧はエスケープ
+
+            //各記法によって辞書セットしていく...
+            //カクヨムもなろうも同じ？
+            switch (cm)
+            {
+                case 1:
+                case 2:
+                    foreach (var c in Libs)
+                    {
+                        sx = sx.Replace(c.Key, '｜' + c.Key + "《" + c.Value + "》"); //カナに対してさらにカナがつかないようにする処理は入れていない。
+                    }
+                    break;
+            }
+            return sx;
         }
     }
 }
