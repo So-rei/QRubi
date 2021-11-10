@@ -198,5 +198,25 @@ namespace QRubi
             txtLoadTargetFolder.Enabled = !b;
             btnLoadTargetFolder.Enabled = !b;
         }
+
+        //閉じる時に保存
+        private void _MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var Dic = new Dictionary<string, string>();
+            Dic.Add("BfLoadFilePath", txtLoadTargetFile.Text);
+            Dic.Add("BfLoadFolderPath", txtLoadTargetFolder.Text);
+            Dic.Add("BfSaveFolderPath", txtSaveTargetFolder.Text);
+            Dic.Add("Chk1", Convert.ToString(chkChange1.Checked));
+            Dic.Add("Chk2", Convert.ToString(chkChange2.Checked));
+
+            var slbDic = new List<string>();
+            foreach (var c in lbDic.Items)
+            {
+                slbDic.Add(@c.ToString());
+            }
+            Dic.Add("Dic", string.Join("\r", slbDic));
+
+            ConfigClass.WriteValue(Dic);
+        }
     }
 }

@@ -323,6 +323,7 @@ namespace QRubi
             this.Controls.Add(this.btnStart);
             this.Name = "_MainForm";
             this.Text = "自動ルビ振り Ver0.1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this._MainForm_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);

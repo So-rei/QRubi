@@ -12,6 +12,8 @@ namespace QRubi
     /// </summary>
     public static class ConfigClass
     {
+        static Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
         //app.configから取得
         public static string DefaultLoadFilePath = ConfigurationManager.AppSettings["DefaultLoadFilePath"];
         public static string DefaultLoadFolderPath = ConfigurationManager.AppSettings["DefaultLoadFolderPath"];
@@ -22,7 +24,7 @@ namespace QRubi
         public static string Chk1 = ConfigurationManager.AppSettings["Chk1"];
         public static string Chk2 = ConfigurationManager.AppSettings["Chk2"];
 
-        public static string Dic1 = ConfigurationManager.AppSettings["Dic1"];
+        public static string Dic1 = ConfigurationManager.AppSettings["Dic"];
 
         public static string LoadFilePath { get; set; } = BfLoadFilePath != "" ? BfLoadFilePath : DefaultLoadFilePath;
         public static string LoadFolderPath { get; set; } = BfLoadFolderPath != "" ? BfLoadFolderPath : DefaultLoadFolderPath;
@@ -33,17 +35,22 @@ namespace QRubi
 
         public static IEnumerable<string> DicPath()
         {
-            int i = 1;
-            while (true)
-            {
-                string s = ConfigurationManager.AppSettings["Dic" + i.ToString()];
-                if (s != null && s != "")
-                    yield return s;
-                else
-                    yield break;
+            string s = ConfigurationManager.AppSettings["Dic"];
+            if (s == null || s == "")
+                return new string[] { "" };
+            else
+                return s.Split('\r');
+        }
 
-                i++;
+        public static void WriteValue(Dictionary<string,string> keyvalues)
+        {
+            foreach (var c in keyvalues)
+            {
+                config.AppSettings.Settings[c.Key].Value = c.Value;
             }
+            config.Save();
+
+            return;
         }
     }
 }
