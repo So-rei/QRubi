@@ -29,6 +29,8 @@ namespace QRubi
                 lbDic.Items.Add(c);
             }
 
+            //制御状態初期値
+            ModeChange(true);
             chkOption_CheckedChanged(null, null);
         }
 
@@ -39,15 +41,20 @@ namespace QRubi
         /// <param name="e"></param>
         private void btnStart_Click(object sender, EventArgs e)
         {
+            lbLog.Text += "\r\n" + DateTime.Now.ToLongTimeString() + " 処理開始...";
+
             //パス確認・取得
             var InName = new List<string>();
+
+            //ロード元：ファイル単位 or フォルダ内まるごと
             if (rdoFile.Checked)
                 InName.Add(txtLoadTargetFile.Text);
             else
-                InName.AddRange(GetLoadFiles());
+                InName.AddRange(System.IO.Directory.GetFiles(@txtLoadTargetFolder.Text, "*", System.IO.SearchOption.AllDirectories));
             if (InName.Count() == 0) return;
 
-            var OutName = GetSaveFile();
+            //セーブ先：
+            var OutName = System.IO.Directory.Exists(@txtSaveTargetFolder.Text) ? @txtSaveTargetFolder.Text : "";
             if (OutName == "") return;
 
             var slbDic = new List<string>();
@@ -60,6 +67,8 @@ namespace QRubi
             if (chkChange1.Checked) CheckedChangeMode.Add(1);
             if (chkChange2.Checked) CheckedChangeMode.Add(2);
 
+            lbLog.Text += "\r\n" + DateTime.Now.ToLongTimeString() + String.Format("{0}個のファイルを変換しています...", InName.Count().ToString());
+
             //作業中ダイアログ
             var cfrm = new frmDialog();
             cfrm.Show();
@@ -68,17 +77,7 @@ namespace QRubi
             var cExChangeCls = new ExChangeCls(CheckedChangeMode, InName, OutName, slbDic, cfrm);
 
             cfrm.Close();
-        }
-
-        //TODO フォルダごと取る時
-        private IEnumerable<string> GetLoadFiles()
-        {
-            yield return "";
-        }
-
-        private string GetSaveFile()
-        {
-            return System.IO.Directory.Exists(@txtSaveTargetFolder.Text) ? @txtSaveTargetFolder.Text : "";
+            lbLog.Text += "\r\n" + DateTime.Now.ToLongTimeString() + " 処理完了";
         }
 
 
@@ -91,8 +90,39 @@ namespace QRubi
         }
         #endregion
 
+
+        //ロードファイル選択
         private void btnLoadTargetFile_Click(object sender, EventArgs e)
         {
+            txtLoadTargetFile.Text = GetOpenFileName();
+        }
+        //ロードフォルダ選択
+        private void btnLoadTargetFolder_Click(object sender, EventArgs e)
+        {
+            txtLoadTargetFolder.Text = GetFolderName();
+        }
+        //セーブフォルダ選択
+        private void btnSaveTargetFolder_Click(object sender, EventArgs e)
+        {
+            txtSaveTargetFolder.Text = GetFolderName();
+        }
+
+        //辞書追加・削除
+        private void btnAddDic_Click(object sender, EventArgs e)
+        {
+            lbDic.Items.Add(GetOpenFileName());
+        }
+        private void btnRemDic_Click(object sender, EventArgs e)
+        {
+            int index = lbDic.SelectedIndex;
+            if (index >= 0)
+                lbDic.Items.RemoveAt(index);
+        }
+
+
+        private string GetOpenFileName()
+        {
+
             try
             {
                 //OpenFileDialogクラスのインスタンスを作成
@@ -109,15 +139,64 @@ namespace QRubi
 
                 //ダイアログを表示する
                 if (ofd.ShowDialog() == DialogResult.OK)
-                    txtLoadTargetFile.Text = ofd.FileName;
+                    return ofd.FileName;
 
-                return;
+                return "";
             }
             catch (Exception ex)
             {
                 lbLog.Text += "\r\n" + ex.Message;
-                return;
+                return "";
             }
+        }
+        private string GetFolderName()
+        {
+            try
+            {
+                //FolderBrowserDialogクラスのインスタンスを作成
+                FolderBrowserDialog fbd = new FolderBrowserDialog();
+
+                //上部に表示する説明テキストを指定する
+                fbd.Description = "フォルダを指定してください。";
+                //ルートフォルダを指定する
+                //デフォルトでDesktop
+                fbd.RootFolder = Environment.SpecialFolder.Desktop;
+                //最初に選択するフォルダを指定する
+                //RootFolder以下にあるフォルダである必要がある
+                fbd.SelectedPath = @"C:\Windows";
+                //ユーザーが新しいフォルダを作成できるようにする
+                //デフォルトでTrue
+                fbd.ShowNewFolderButton = true;
+
+                //ダイアログを表示する
+                if (fbd.ShowDialog(this) == DialogResult.OK)
+                    return fbd.SelectedPath;
+
+                return "";
+            }
+            catch (Exception ex)
+            {
+                lbLog.Text += "\r\n" + ex.Message;
+                return "";
+            }
+        }
+
+        //入力切替
+        private void rdoFile_CheckedChanged(object sender, EventArgs e)
+        {
+            ModeChange(true);
+        }
+        private void rdoFolder_CheckedChanged(object sender, EventArgs e)
+        {
+            ModeChange(false);
+        }
+
+        private void ModeChange(bool b)
+        {
+            txtLoadTargetFile.Enabled = b;
+            btnLoadTargetFile.Enabled = b;
+            txtLoadTargetFolder.Enabled = !b;
+            btnLoadTargetFolder.Enabled = !b;
         }
     }
 }

@@ -76,7 +76,7 @@ namespace QRubi
                 Parallel.ForEach(InName, sIn =>
                 {
                     //行単位で処理
-                    string outputfileName = @OutName + "【ルビ済】" + sIn.Split('\\').Last();
+                    string outputfileName = @OutName + "【ルビ済-"+ cm.ToString() + "】" + sIn.Split('\\').Last();
                     var sb = new System.Text.StringBuilder();
 
                     using (var sr = new System.IO.StreamReader(@sIn, System.Text.Encoding.GetEncoding("utf-8")))

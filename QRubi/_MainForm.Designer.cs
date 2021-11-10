@@ -42,7 +42,6 @@ namespace QRubi
             this.btnLoadTargetFile = new System.Windows.Forms.Button();
             this.txtLoadTargetFile = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.rdoFile = new System.Windows.Forms.RadioButton();
             this.rdoFolder = new System.Windows.Forms.RadioButton();
@@ -76,16 +75,16 @@ namespace QRubi
             this.lbLog.Enabled = false;
             this.lbLog.FormattingEnabled = true;
             this.lbLog.ItemHeight = 12;
-            this.lbLog.Location = new System.Drawing.Point(75, 390);
+            this.lbLog.Location = new System.Drawing.Point(695, 385);
             this.lbLog.Name = "lbLog";
-            this.lbLog.Size = new System.Drawing.Size(597, 76);
+            this.lbLog.Size = new System.Drawing.Size(20, 16);
             this.lbLog.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(563, 356);
+            this.label1.Location = new System.Drawing.Point(611, 385);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 2;
@@ -98,6 +97,7 @@ namespace QRubi
             // chkChange1
             // 
             this.chkChange1.AutoSize = true;
+            this.chkChange1.Enabled = false;
             this.chkChange1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.chkChange1.Location = new System.Drawing.Point(26, 21);
             this.chkChange1.Name = "chkChange1";
@@ -149,6 +149,7 @@ namespace QRubi
             this.btnSaveTargetFolder.TabIndex = 10;
             this.btnSaveTargetFolder.Text = "...";
             this.btnSaveTargetFolder.UseVisualStyleBackColor = true;
+            this.btnSaveTargetFolder.Click += new System.EventHandler(this.btnSaveTargetFolder_Click);
             // 
             // btnLoadTargetFile
             // 
@@ -179,16 +180,6 @@ namespace QRubi
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "その他オプション";
             // 
-            // button4
-            // 
-            this.button4.Font = new System.Drawing.Font("MS UI Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button4.Location = new System.Drawing.Point(621, 350);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(25, 26);
-            this.button4.TabIndex = 14;
-            this.button4.Text = "↓";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -211,6 +202,7 @@ namespace QRubi
             this.rdoFile.TabStop = true;
             this.rdoFile.Text = "ファイルを変換";
             this.rdoFile.UseVisualStyleBackColor = true;
+            this.rdoFile.CheckedChanged += new System.EventHandler(this.rdoFile_CheckedChanged);
             // 
             // rdoFolder
             // 
@@ -222,6 +214,7 @@ namespace QRubi
             this.rdoFolder.TabIndex = 17;
             this.rdoFolder.Text = "フォルダ全体を変換";
             this.rdoFolder.UseVisualStyleBackColor = true;
+            this.rdoFolder.CheckedChanged += new System.EventHandler(this.rdoFolder_CheckedChanged);
             // 
             // groupBox3
             // 
@@ -256,6 +249,7 @@ namespace QRubi
             this.btnLoadTargetFolder.TabIndex = 19;
             this.btnLoadTargetFolder.Text = "...";
             this.btnLoadTargetFolder.UseVisualStyleBackColor = true;
+            this.btnLoadTargetFolder.Click += new System.EventHandler(this.btnLoadTargetFolder_Click);
             // 
             // groupBox4
             // 
@@ -300,6 +294,7 @@ namespace QRubi
             this.btnRemDic.TabIndex = 11;
             this.btnRemDic.Text = "削除";
             this.btnRemDic.UseVisualStyleBackColor = true;
+            this.btnRemDic.Click += new System.EventHandler(this.btnRemDic_Click);
             // 
             // btnAddDic
             // 
@@ -310,18 +305,18 @@ namespace QRubi
             this.btnAddDic.TabIndex = 10;
             this.btnAddDic.Text = "追加";
             this.btnAddDic.UseVisualStyleBackColor = true;
+            this.btnAddDic.Click += new System.EventHandler(this.btnAddDic_Click);
             // 
             // _MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(748, 478);
+            this.ClientSize = new System.Drawing.Size(748, 411);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbLog);
@@ -355,7 +350,6 @@ namespace QRubi
         private System.Windows.Forms.Button btnLoadTargetFile;
         private System.Windows.Forms.TextBox txtLoadTargetFile;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RadioButton rdoFile;
         private System.Windows.Forms.RadioButton rdoFolder;
